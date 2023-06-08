@@ -36,21 +36,24 @@
           request. All feedback is appreciated to help us<br />
           improve our offering!</p>
 
-        <div class='rating-values'>
-          <input type='button' value='1' />
-          <input type='button' value='2' />
-          <input type='button' value='3' />
-          <input type='button' value='4' />
+        <form class='rating-values'>
           <input type='button' value='5' />
+          <input type='button' value='4' />
+          <input type='button' value='3' />
+          <input type='button' value='2' />
+          <input type='button' value='1' />
+        </form>
+        <button
+          id='submit-button'
+          type='submit'
+          class='margin-top-big'
+        >Submit</button>
 
-        </div>
-
-        <button type='submit' class='margin-top-big'>Submit</button>
       </div>
     </section>
 
-    <section class='rating-component'>
-      <div class='rating-component__container submited-state'>
+    <section class='modal-rating'>
+      <div class='modal-rating__container'>
         <span class='margin-top-medium'>
           <svg width='162' height='108' xmlns='http://www.w3.org/2000/svg'><g
               fill='none'
@@ -124,8 +127,7 @@
               /></g></svg>
 
         </span>
-        <p class='selected-rate margin-top-big margim-bottom-big'>You selected 4
-          out of 5</p>
+        <p class='selected-rate-text margin-top-big margim-bottom-big'></p>
         <h2>Thank you!</h2>
         <p class='margin-top-medium'>
           We appreciate you taking the time to give a rating.<br />

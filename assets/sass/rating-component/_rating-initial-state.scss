@@ -25,6 +25,11 @@ button {
   }
 }
 
+#active-state {
+  background-color: $orange-primary-color;
+  color: $white;
+}
+
 .star-icon {
   background-color: rgba($medium-grey, 0.212);
   border-radius: 100%;
@@ -38,6 +43,7 @@ button {
     align-items: center;
     height: 100vh;
     background-color: $very-dark-blue;
+    position: relative;
 
     &__container {
       display: flex;
@@ -56,6 +62,7 @@ button {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    flex-direction: row-reverse;
 
     & input {
       border: none;
@@ -73,22 +80,11 @@ button {
         color: $white;
         cursor: pointer;
       }
+
+      &:hover + input {
+        background-color: $light-grey;
+        color: $white;
+      }
     }
   }
-}
-
-.submited-state {
-  align-items: center;
-}
-
-.submited-state p {
-  text-align: center;
-}
-
-.selected-rate {
-  text-align: center;
-  color: $orange-primary-color;
-  background-color: rgba($medium-grey, 0.212);
-  border-radius: 5rem;
-  padding: 0.5rem 1rem;
 }
