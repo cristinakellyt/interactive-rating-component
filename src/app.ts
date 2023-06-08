@@ -1,1 +1,1 @@
-console.log('Setting up the environment');
+import './../assets/sass/main.scss';
