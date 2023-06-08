@@ -15,4 +15,6 @@
 .DS_Store
 .prettierignore
 
-.README.md
+README.md
+node_modules
+assets/dist
