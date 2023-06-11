@@ -1,59 +1,51 @@
 import './../assets/sass/main.scss';
 
 class ratingComponent {
-  private submitButton!: HTMLButtonElement;
   private userRate!: string;
-  private valueSelected!: HTMLInputElement;
-  private modalRating!: HTMLElement;
-  private textWithRateValue!: HTMLParagraphElement;
+  private valueSelected!: HTMLInputElement | null;
+  private modalRating!: HTMLDivElement;
+  private textWithRateValue: HTMLParagraphElement;
 
   constructor() {
-    const ratings = document.querySelector('.rating-values') as HTMLFormElement;
-    const mainEl = document.querySelector('.modal-rating') as HTMLElement;
+    const ratings = document.getElementById('rating-values') as HTMLFormElement;
+    for (const value of ratings) {
+      if (value.getAttribute('type') === 'button') {
+        value.addEventListener('click', this.storeUserRate as EventListener);
+      }
 
-    this.selectElements();
-    this.submitButton.addEventListener(
-      'click',
-      this.rateTextInSubmitedStateHandler
-    );
-    mainEl.addEventListener('click', this.closeModalHandler);
-    this.ratingValues(ratings);
-  }
+      if (value.getAttribute('type') === 'submit') {
+        value.addEventListener(
+          'click',
+          this.rateTextInSubmitedStateHandler as EventListener
+        );
+      }
+    }
 
-  private selectElements = () => {
-    this.textWithRateValue = document.querySelector(
+    this.modalRating = document.querySelector(
+      '.modal-rating'
+    ) as HTMLDivElement;
+
+    this.textWithRateValue = this.modalRating.querySelector(
       '.selected-rate-text'
     ) as HTMLParagraphElement;
-    this.modalRating = document.querySelector('.modal-rating') as HTMLElement;
-
-    this.submitButton = document.getElementById(
-      'submit-button'
-    ) as HTMLButtonElement;
-  };
-
-  private ratingValues = (ratings: HTMLFormElement) => {
-    for (const value of ratings) {
-      value.addEventListener('click', this.storeUserRate as EventListener);
-    }
-  };
+  }
 
   private storeUserRate = (event: MouseEvent) => {
     if (!this.valueSelected) {
       this.valueSelected = event.target as HTMLInputElement;
     }
-
+    console.log(this.valueSelected);
     if (this.valueSelected !== event.target) {
       this.valueSelected.removeAttribute('id');
     }
 
-    if (event) {
-      this.valueSelected = event.target as HTMLInputElement;
-      (event.target as HTMLInputElement).id = 'active-state';
-      this.userRate = (event.target as HTMLInputElement).value;
-    }
+    this.valueSelected = event.target as HTMLInputElement;
+    (event.target as HTMLInputElement).id = 'active-state';
+    this.userRate = (event.target as HTMLInputElement).value;
   };
 
-  private rateTextInSubmitedStateHandler = () => {
+  private rateTextInSubmitedStateHandler = (event: MouseEvent) => {
+    event.preventDefault();
     if (!this.valueSelected) {
       alert('Should select some value');
       return;
@@ -68,18 +60,14 @@ class ratingComponent {
   };
 
   private showModal = () => {
-    this.modalRating.classList.remove('slideout-animation');
-    this.modalRating.classList.add('slidein-animation');
-    this.modalRating!.style.display = 'flex';
+    this.modalRating.setAttribute('opened', '');
+    this.modalRating.addEventListener('click', this.closeModalHandler);
   };
 
   private closeModalHandler = () => {
-    this.modalRating.classList.remove('slidein-animation');
-    this.modalRating.classList.add('slideout-animation');
-    setTimeout(() => {
-      this.modalRating!.style.display = 'none';
-    }, 320);
-    this.valueSelected.removeAttribute('id');
+    this.modalRating!.removeAttribute('opened');
+    this.valueSelected!.removeAttribute('id');
+    this.valueSelected = null;
   };
 }
 

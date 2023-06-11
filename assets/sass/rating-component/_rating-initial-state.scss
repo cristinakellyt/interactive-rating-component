@@ -25,11 +25,6 @@ button {
   }
 }
 
-#active-state {
-  background-color: $orange-primary-color;
-  color: $white;
-}
-
 .star-icon {
   background-color: rgba($medium-grey, 0.212);
   border-radius: 100%;
@@ -55,36 +50,41 @@ button {
       border-radius: 5rem;
     }
   }
+}
 
-  &-values {
-    align-self: stretch;
-    list-style: none;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    flex-direction: row-reverse;
+#rating-values {
+  align-self: stretch;
+  list-style: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row-reverse;
 
-    & input {
-      border: none;
-      font-size: 1.6rem;
-      font-weight: 700;
-      padding: 1.5rem 2rem;
-      background-color: rgba($medium-grey, 0.212);
-      border-radius: 100%;
-      color: $light-grey;
-      transition: all 0.2s;
+  & input {
+    border: none;
+    font-size: 1.6rem;
+    font-weight: 700;
+    padding: 1.5rem 2rem;
+    background-color: rgba($medium-grey, 0.212);
+    border-radius: 100%;
+    color: $light-grey;
+    transition: all 0.2s;
 
-      &:hover,
-      &:active {
-        background-color: $orange-primary-color;
-        color: $white;
-        cursor: pointer;
-      }
+    &:hover,
+    &:active {
+      background-color: $orange-primary-color;
+      color: $white;
+      cursor: pointer;
+    }
 
-      &:hover + input {
-        background-color: $light-grey;
-        color: $white;
-      }
+    &:hover + input {
+      background-color: $light-grey;
+      color: $white;
     }
   }
+}
+
+#active-state {
+  background-color: $orange-primary-color !important;
+  color: $white !important;
 }

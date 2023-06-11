@@ -20,15 +20,3 @@ $very-dark-blue: #121417;
 .margin-top-big {
   margin-top: 3rem;
 }
-
-// ----------- ANIMATION CLASSES
-
-.slidein-animation {
-  -webkit-animation: slidein 0.5s ease;
-  animation: slidein 0.5s ease;
-}
-
-.slideout-animation {
-  -webkit-animation: slideout 0.5s ease;
-  animation: slideout 0.5s ease;
-}
