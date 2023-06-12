@@ -4,7 +4,7 @@
   "description": "![Design preview for the Interactive rating component coding challenge](./design/desktop-preview.jpg)",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config webpack.production.config.js",
+    "build-app": "webpack --config webpack.production.config.js",
     "dev": "webpack serve --config webpack.dev.config.js --hot"
   },
   "repository": {
