@@ -71,8 +71,7 @@ button {
     color: $light-grey;
     transition: all 0.2s;
 
-    &:hover,
-    &:active {
+    &:hover {
       background-color: $orange-primary-color;
       color: $white;
       cursor: pointer;

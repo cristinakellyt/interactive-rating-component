@@ -34,7 +34,7 @@ class ratingComponent {
     if (!this.valueSelected) {
       this.valueSelected = event.target as HTMLInputElement;
     }
-    console.log(this.valueSelected);
+
     if (this.valueSelected !== event.target) {
       this.valueSelected.removeAttribute('id');
     }
@@ -48,6 +48,8 @@ class ratingComponent {
     event.preventDefault();
     if (!this.valueSelected) {
       alert('Should select some value');
+      (event.target as HTMLButtonElement).style.backgroundColor = '#fb7413';
+      (event.target as HTMLButtonElement).style.color = '#fff';
       return;
     }
     this.updateTextWithRateValue();
