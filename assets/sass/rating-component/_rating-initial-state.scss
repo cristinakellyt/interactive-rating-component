@@ -53,38 +53,53 @@ button {
   }
 }
 
-#rating-values {
+.rating-values {
   align-self: stretch;
-  list-style: none;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-direction: row-reverse;
-
-  & input {
-    border: none;
-    font-size: 1.6rem;
-    font-weight: 700;
-    padding: 1.5rem 2rem;
-    background-color: rgba($medium-grey, 0.212);
-    border-radius: 100%;
-    color: $light-grey;
-    transition: all 0.2s;
-
-    &:hover {
-      background-color: $orange-primary-color;
-      color: $white;
-      cursor: pointer;
-    }
-
-    &:hover + input {
-      background-color: $light-grey;
-      color: $white;
-    }
-  }
+  flex-direction: column;
 }
 
-#active-state {
-  background-color: $orange-primary-color !important;
-  color: $white !important;
+.ratings {
+  display: flex;
+  justify-content: space-between;
+
+  & label {
+    color: $light-grey;
+    font-weight: 700;
+    font-size: 1.6rem;
+    position: relative;
+    border-radius: 50%;
+
+    & span {
+      position: absolute;
+      top: 50%;
+      right: 50%;
+      transform: translate(50%, -50%);
+    }
+
+    & input[type='radio'] {
+      appearance: none;
+      border: none;
+      background-color: rgba($medium-grey, 0.212);
+      border-radius: 50%;
+      height: 5rem;
+      width: 5rem;
+      transition: all 0.2s;
+    }
+
+    &:hover > input[type='radio'] {
+      @include cursor-pointer-color-white;
+      background-color: $light-grey;
+    }
+
+    & input[type='radio']:checked {
+      @include cursor-pointer-color-white;
+      background-color: $orange-primary-color;
+    }
+
+    &:hover > span,
+    & input[type='radio']:checked + span {
+      @include cursor-pointer-color-white;
+    }
+  }
 }

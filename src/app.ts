@@ -1,75 +1,41 @@
 import './../assets/sass/main.scss';
 
 class ratingComponent {
-  private userRate!: string;
-  private valueSelected!: HTMLInputElement | null;
-  private modalRating!: HTMLDivElement;
-  private textWithRateValue: HTMLParagraphElement;
+  private ratings: HTMLFormElement;
+  private modal!: HTMLDivElement;
 
   constructor() {
-    const ratings = document.getElementById('rating-values') as HTMLFormElement;
-    for (const value of ratings) {
-      if (value.getAttribute('type') === 'button') {
-        value.addEventListener('click', this.storeUserRate as EventListener);
-      }
+    this.ratings = document.querySelector('.rating-values')!;
+    this.ratings.addEventListener('submit', this.submitHandler);
 
-      if (value.getAttribute('type') === 'submit') {
-        value.addEventListener(
-          'click',
-          this.rateTextInSubmitedStateHandler as EventListener
-        );
-      }
-    }
-
-    this.modalRating = document.querySelector(
-      '.modal-rating'
-    ) as HTMLDivElement;
-
-    this.textWithRateValue = this.modalRating.querySelector(
-      '.selected-rate-text'
-    ) as HTMLParagraphElement;
+    const backdrop = document.querySelector('.modal-rating')!;
+    backdrop.addEventListener('click', this.hideModal);
   }
 
-  private storeUserRate = (event: MouseEvent) => {
-    if (!this.valueSelected) {
-      this.valueSelected = event.target as HTMLInputElement;
-    }
-
-    if (this.valueSelected !== event.target) {
-      this.valueSelected.removeAttribute('id');
-    }
-
-    this.valueSelected = event.target as HTMLInputElement;
-    (event.target as HTMLInputElement).id = 'active-state';
-    this.userRate = (event.target as HTMLInputElement).value;
-  };
-
-  private rateTextInSubmitedStateHandler = (event: MouseEvent) => {
+  private submitHandler = (event: Event) => {
     event.preventDefault();
-    if (!this.valueSelected) {
-      alert('Should select some value');
-      (event.target as HTMLButtonElement).style.backgroundColor = '#fb7413';
-      (event.target as HTMLButtonElement).style.color = '#fff';
+    const selectedRate = document.querySelector('input[name=rating]:checked');
+
+    if (!selectedRate) {
+      alert('You have to select a value');
       return;
     }
-    this.updateTextWithRateValue();
-    this.showModal();
+
+    this.ratings.reset();
+    const submitedValue = selectedRate.getAttribute('value')!;
+    this.showModal(submitedValue);
   };
 
-  private updateTextWithRateValue = () => {
-    this.textWithRateValue!.textContent = `You selected ${this.userRate}
-    out of 5`;
+  private showModal = (submitedValue: string) => {
+    this.modal = document.querySelector('.modal-rating')!;
+    this.modal.setAttribute('opened', '');
+
+    const modalTextWithRate = document.querySelector('.selected-rate-text')!;
+    modalTextWithRate.textContent = `You selected ${submitedValue} out of 5`;
   };
 
-  private showModal = () => {
-    this.modalRating.setAttribute('opened', '');
-    this.modalRating.addEventListener('click', this.closeModalHandler);
-  };
-
-  private closeModalHandler = () => {
-    this.modalRating!.removeAttribute('opened');
-    this.valueSelected!.removeAttribute('id');
-    this.valueSelected = null;
+  private hideModal = () => {
+    this.modal.removeAttribute('opened');
   };
 }
 
