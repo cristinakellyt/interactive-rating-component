@@ -25,8 +25,7 @@
     }
   }
 
-  &[opened],
-  &[opened] .modal-rating__container {
+  &[opened] {
     opacity: 1;
     pointer-events: all;
     top: 0;

@@ -20,3 +20,10 @@ $very-dark-blue: #121417;
 .margin-top-big {
   margin-top: 3rem;
 }
+
+// ------------ MIXINS
+
+@mixin cursor-pointer-color-white {
+  color: $white;
+  cursor: pointer;
+}
