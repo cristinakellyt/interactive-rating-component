@@ -32,10 +32,6 @@ module.exports = {
         use: ['ts-loader'],
         exclude: /node_modules/,
       },
-      {
-        test: /\.hbs$/,
-        use: ['handlebars-loader'],
-      },
     ],
   },
   resolve: {
@@ -49,7 +45,7 @@ module.exports = {
       filename: 'style.[contenthash].css',
     }),
     new HtmlWebpackPlugin({
-      template: 'src/index.hbs',
+      template: 'src/index.html',
     }),
   ],
 };

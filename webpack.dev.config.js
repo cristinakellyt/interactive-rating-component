@@ -42,10 +42,6 @@ module.exports = {
         test: /\.scss$/,
         use: ['style-loader', 'css-loader', 'sass-loader'],
       },
-      {
-        test: /\.hbs$/,
-        use: ['handlebars-loader'],
-      },
     ],
   },
   resolve: {
@@ -56,7 +52,7 @@ module.exports = {
       cleanOnceBeforeBuildPatterns: ['**/*'],
     }),
     new HtmlWebpackPlugin({
-      template: 'src/index.hbs',
+      template: 'src/index.html',
     }),
   ],
 };
