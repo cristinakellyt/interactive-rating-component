@@ -78,6 +78,7 @@ button {
     }
 
     & input[type='radio'] {
+      display: flex;
       appearance: none;
       border: none;
       background-color: rgba($medium-grey, 0.212);

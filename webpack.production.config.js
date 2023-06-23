@@ -7,7 +7,7 @@ module.exports = {
   entry: './src/app.ts',
   output: {
     filename: 'bundle.[contenthash].js',
-    path: path.resolve(__dirname, 'assets', 'dist'),
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '',
   },
   mode: 'production',

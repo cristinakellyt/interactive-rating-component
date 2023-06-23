@@ -1,4 +1,4 @@
-import './../assets/sass/main.scss';
+import './sass/main.scss';
 
 class ratingComponent {
   private ratings: HTMLFormElement;
